@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --forest: #173d32;
+  --forest-soft: #244f40;
+  --cream: #f6f4ec;
+  --olive: #dce6d8;
+  --gold: #c5a66b;
+  --ink: #303632;
+  --muted: #858c84;
+  --line: #dfddd2;
+  --header-h: 72px;
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 152px; }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    font-feature-settings: 'kern' 1;
+  }
+  ::selection {
+    background: var(--gold);
+    color: #122f27;
+  }
+  :focus-visible {
+    outline: 2px solid var(--forest-soft);
+    outline-offset: 3px;
+  }
+  h1, h2, h3, h4 {
+    @apply text-forest;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  table { @apply w-full; }
+}
+
+@layer components {
+  .editorial-title {
+    @apply font-display text-forest;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-forest-600;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-6 bg-gold;
+  }
+  .hairline { @apply border-t border-line; }
+  .surface {
+    @apply border border-line bg-cream-light;
+  }
+  .surface-hover {
+    @apply transition-all duration-300 hover:border-forest-200 hover:shadow-card;
+  }
+  .link-underlined {
+    @apply underline decoration-gold decoration-1 underline-offset-4 transition-colors hover:text-forest-600;
+  }
+  .text-balance { text-wrap: balance; }
+  .noise-none { background-image: none; }
+  .simulated-label {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold-light/40 px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide text-forest-700;
+  }
+  .section-pad { @apply py-16 sm:py-20 lg:py-24; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { @apply rounded-full bg-forest-100; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer utilities {
+  .bg-grid-faint {
+    background-image: linear-gradient(to right, rgba(23, 61, 50, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(23, 61, 50, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .text-shadow-hero { text-shadow: 0 2px 24px rgba(23, 61, 50, 0.28); }
+  .mask-fade-b { mask-image: linear-gradient(to bottom, black 72%, transparent 100%); }
+}
+
+/* Long-form reading typography — use `prose prose-longevity max-w-none` on the wrapper. */
+.prose-longevity h2 { @apply mt-14 mb-5 border-l-2 border-gold pl-4 text-2xl sm:text-[1.75rem]; }
+.prose-longevity h3 { @apply mt-9 mb-3 text-xl; }
+.prose-longevity p { @apply my-5 leading-[1.95]; }
+.prose-longevity li { @apply my-1.5 leading-[1.9]; }
+.prose-longevity strong { @apply font-semibold; }
+.prose-longevity hr { @apply my-12; }
+.prose-longevity table { @apply my-8 block overflow-x-auto text-sm; }
+.prose-longevity th { @apply whitespace-nowrap bg-cream-deep px-3 py-2 text-left font-semibold text-forest; }
+.prose-longevity td { @apply border-t border-line px-3 py-2 align-top; }
+.prose-longevity figcaption { @apply mt-2 text-center text-xs text-muted; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

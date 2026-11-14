@@ -1,0 +1,60 @@
+---
+title: "表观遗传时钟：能测量什么，不能预测什么"
+conclusion: "表观遗传时钟能给出与年龄相关的群体统计估计，但单个数值不能诊断疾病、判定衰老速度或预测个人寿命。"
+description: "介绍 DNA 甲基化时钟的构建逻辑、代际差异与商业检测应有的谨慎解读。"
+category: "衰老科学"
+categoryHref: "/aging-science"
+date: "2026-07-28"
+evidence: limited
+tags: ["表观遗传", "甲基化时钟", "生物标志物"]
+keywords: ["epigenetic clock", "DNA methylation", "生物年龄"]
+illustration: epigenetics
+charts: ["researchComparison"]
+related: ["biological-age-testing", "telomeres-and-aging", "health-metrics-by-age"]
+featured: true
+references:
+  - citation: "Horvath S. DNA methylation age of human tissues and cell types. Genome Biol. 2013;14:R115."
+    year: 2013
+    url: "https://doi.org/10.1186/gb-2013-14-10-r115"
+  - citation: "López-Otín C, et al. Hallmarks of Aging: An Expanding Universe. Cell. 2023;186(2):243-278."
+    year: 2023
+    url: "https://doi.org/10.1016/j.cell.2022.11.001"
+---
+
+## 核心概念
+
+表观遗传时钟利用 DNA 甲基化位点的模式，通过统计模型估计一个「甲基化年龄」。第一代的构建目标是预测日历年龄，第二代则把死亡风险、慢性病指标等纳入训练目标，因此不同时钟回答的是**不同问题**，数值不能互换比较。
+
+模型输出本质上是「在参考人群中，与这个甲基化模式相对应的年龄或风险水平」，不是对个体生理状态的直接测量。
+
+## 研究证据
+
+群体层面，甲基化年龄与日历年龄高度相关，其偏离值（常被称为年龄加速）与部分健康结局存在统计关联。但关联强度受组织类型、细胞组成、批次效应、人群祖先背景与模型版本影响；同一个样本用不同时钟可能得到不同结论。
+
+<EvidenceBadge level="limited" />
+
+<Chart name="researchComparison" height={240} />
+
+## 实际意义
+
+如果用于科研或自我观察，更合理的用途是**长期趋势描述**，并明确记录检测平台与模型版本。用于个人健康决策时，应以可验证、可行动的临床指标为主。把一次检测结果当作「年轻了五岁」的证据，属于对统计估计的误读。
+
+## 常见误区
+
+- **误区**：数值下降说明真的变年轻了。**更准确**：短期波动可能来自测量噪声与细胞组成变化。
+- **误区**：不同机构的时钟可以横向比较。**更准确**：训练目标与平台不同，结果不可直接对比。
+- **误区**：时钟能给出个人剩余寿命。**更准确**：模型基于群体风险估计，不提供个体预测。
+
+## 研究局限
+
+多数训练数据来自特定人群，跨族群与跨年龄段的泛化能力有限；观察性关联无法排除混杂；干预引起的时钟变化是否对应真实临床获益，仍缺少长期随机对照验证。
+
+<Callout kind="warning" title="证据边界">
+
+生物年龄下降不等于真实年龄逆转，商业检测结果不等于医学诊断。
+
+</Callout>
+
+## 小结
+
+把时钟看成研究工具，而非个人成绩单。可继续阅读 [商业生物年龄检测](/articles/biological-age-testing) 与 [不同年龄的健康指标](/articles/health-metrics-by-age)。
