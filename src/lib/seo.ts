@@ -8,8 +8,8 @@ export const siteConfig = {
   taglineAcademic: 'The Science of Aging and Longevity.',
   description:
     'LONGEVIA 是科学抗衰与健康长寿知识平台。以循证视角解读衰老生物学、健康寿命、营养代谢、运动机能、睡眠心理与长寿研究进展，并提供本地保存的健康数据工具。',
-  /** Set NEXT_PUBLIC_SITE_URL in deployment. Safe default keeps generated links valid. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://longevia.org').replace(/\/+$/, ''),
+  /** Set NEXT_PUBLIC_SITE_URL (origin only) to override the deployed domain. */
+  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yuxin.run').replace(/\/+$/, ''),
   /** GitHub Pages project sites live under /<repo>; empty for root / custom-domain sites. */
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   locale: 'zh_CN',

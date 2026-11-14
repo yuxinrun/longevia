@@ -37,17 +37,27 @@ jobs:
         id: site
         env:
           REPOSITORY: ${{ github.repository }}
-          CUSTOM_DOMAIN: ${{ vars.PUBLIC_SITE_URL }}
+          # Full site root, e.g. https://longevia.org or https://www.yuxin.run/longevia
+          SITE_ROOT: ${{ vars.PUBLIC_SITE_URL }}
         run: |
-          if [ -n "$CUSTOM_DOMAIN" ]; then
-            host=$(printf '%s' "$CUSTOM_DOMAIN" | sed -E 's#^https?://##; s#/+$##; s#/.*$##')
-            echo "site_origin=https://${host}" >> "$GITHUB_OUTPUT"
-            echo "base_path=" >> "$GITHUB_OUTPUT"
-            echo "cname=${host}" >> "$GITHUB_OUTPUT"
+          if [ -n "$SITE_ROOT" ]; then
+            root=${SITE_ROOT%/}
+            origin=$(printf '%s' "$root" | sed -E 's#^(https?://[^/]+).*#\1#')
+            base_path=$(printf '%s' "$root" | sed -E 's#^https?://[^/]+##; s#/+$##')
+            host=$(printf '%s' "$origin" | sed -E 's#^https?://##')
+            echo "site_origin=${origin}" >> "$GITHUB_OUTPUT"
+            echo "base_path=${base_path}" >> "$GITHUB_OUTPUT"
+            # Only a root-level custom domain belongs to this site's own Pages config.
+            if [ -z "$base_path" ] && [[ "$host" != *.github.io ]]; then
+              echo "cname=${host}" >> "$GITHUB_OUTPUT"
+            else
+              echo "cname=" >> "$GITHUB_OUTPUT"
+            fi
           else
             owner=$(printf '%s' "${REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
             repo=$(printf '%s' "${REPOSITORY##*/}" | tr '[:upper:]' '[:lower:]')
-            echo "site_origin=https://${owner}.github.io" >> "$GITHUB_OUTPUT"
+            # Empty origin keeps the default domain in src/lib/seo.ts.
+            echo "site_origin=" >> "$GITHUB_OUTPUT"
             if [ "$repo" = "${owner}.github.io" ]; then
               echo "base_path=" >> "$GITHUB_OUTPUT"
             else
